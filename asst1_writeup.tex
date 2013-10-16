@@ -12,6 +12,7 @@
 \usepackage[hyphens]{url}
 \usepackage[margin=1.5in]{geometry}
 \usepackage{graphics,epsfig}
+\newcommand{\fixme}[1]{\textcolor{red}{[FIXME: #1]}}
 
 \begin{document}
 \maketitle
@@ -57,18 +58,49 @@ day after the other measurements. Measurements are visible in Figure
 \label{fig:locations}
 \end{figure}
 
-\section{Model}
+\section{Model} 
 Our model depends on handling LOS and NLOS measurements separately, since even
 though two sampling locations can be geographically very close, the introduction
 of obstacles in the signal path can have a substantial effect on signal
-strength. We discuss both each case in turn.
+strength. The goal of each model is to predict RSSI and downlink throughput as a
+function of GPS coordinates. We discuss each case in turn.
 
-\subsection{LOS Model}
-
+\subsection{LOS Model} We approached the LOS model as follows. At each of 10
+locations, we collected 5 LOS tests and average them. For each distance from the
+AP $d_{1}~..~d_{10}$, we used the \textit{polyfit} linear regression function in
+Matlab to predict the corresponding RSSIs $r_{1}~..~r_{10}$.
+Similarly, each of the 10 distances $d_{i}$ there is a corresponding downlink
+value $s_{i}$ measured using \textit{speedtest.net}.  Similarly, we used
+Matlab's \textit{polyfit} function to model downlink speed as a function of
+the receiver's distance from the AP, such that $r_{i} \cdot s_{i} = f(d_{i}$ for
+each set of measurements $i$. 
+\fixme{We should say more about why we used polyfit for both of these, and
+possibly something about why it's better than other methods. Also, what does
+polyfit take as parameters? GPS coords? Just distances as scalars? And what are
+the results? Also, were the inputs to this model the individual measurements,
+or just the average from each location? -Rob} 
 
 \subsection{NLOS Model}
+\fixme{TODO}
 
 \section{Results and Conclusion}
+\fixme{TODO: what were our results?}
+Though we have not yet had the opportunity to test our model on data points
+besides our own, we believe that it will be mostly accurate in its predictions,
+particularly in the case of the LOS measurements, where we hypothesize that
+distance will be a more heavily weighted factor in predicting RSSI and downlink
+speed.
+For NLOS measurements, on the other hand, we hypothesize that distance---the
+sole input to our models, as calculated from the GPS coordinates of our
+measurements---is a relatively weaker predictor of signals strength. In
+particular, we suspect that the nature of the obstacle in the signal path of our
+NLOS measurements will play a larger role in the attenuation of the signal than
+will distance, and so should probably be an input to any model of signal
+strength. Unfortunately, characterizing the nature of particular obstacles
+between two arbitrary points in a city seems to be a non-trivial task, and so
+the most effective approach is likely to be the one that combines samples from
+as many locations as possible in the target location, and simply averages the
+measurements of the locations nearest to the point of interest.
 
 %\bibliographystyle{abbrv}
 %\bibliography{biblio}
