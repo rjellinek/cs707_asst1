@@ -8,11 +8,11 @@
 }
 \date{\today}
 
+\newcommand{\fixme}[1]{\textcolor{red}{[FIXME: #1]}}
 \documentclass[12pt]{article}
 \usepackage[hyphens]{url}
 \usepackage[margin=1.5in]{geometry}
-\usepackage{graphics,epsfig}
-\newcommand{\fixme}[1]{\textcolor{red}{[FIXME: #1]}}
+\usepackage{graphics,epsfig,color}
 
 \begin{document}
 \maketitle
@@ -67,13 +67,16 @@ function of GPS coordinates. We discuss each case in turn.
 
 \subsection{LOS Model} We approached the LOS model as follows. At each of 10
 locations, we collected 5 LOS tests and average them. For each distance from the
-AP $d_{1}~..~d_{10}$, we used the \textit{polyfit} linear regression function in
-Matlab to predict the corresponding RSSIs $r_{1}~..~r_{10}$.
+AP $d_{1}..d_{10}$, we used the \textit{polyfit} linear regression function in
+Matlab to predict the corresponding RSSIs $r_{1}..r_{10}$.
 Similarly, each of the 10 distances $d_{i}$ there is a corresponding downlink
 value $s_{i}$ measured using \textit{speedtest.net}.  Similarly, we used
 Matlab's \textit{polyfit} function to model downlink speed as a function of
 the receiver's distance from the AP, such that $r_{i} \cdot s_{i} = f(d_{i}$ for
 each set of measurements $i$. 
+\fixme{is $r_{i} \cdot s_{i}$ correct?? or did you mean something else in the
+email description?}
+
 \fixme{We should say more about why we used polyfit for both of these, and
 possibly something about why it's better than other methods. Also, what does
 polyfit take as parameters? GPS coords? Just distances as scalars? And what are
