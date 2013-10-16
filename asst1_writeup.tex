@@ -28,15 +28,16 @@ predicted signal strength. That is, we hypothesize that our signal-strength
 measurements, when used under an appropriate model, can predict signal strength
 at other locations.
 
-\section{Methodology}
-We collected our measurements by walking from point to point, arranging the
-WiMAX dongle such that it faced the access point (AP) antenna on the top of the
-Computer Sciences building, and running a number of tests five times each at
-each location. We used the WiMAX card's web-based management interface tool to
-collect data on RSSI and CINR. We then used \textit{iperf} to record data on the
-card's uplink speed, and \textit{speedtest.net} to measure the link's downlink
-speed. We also recorded time, and used the Locus app on an Android phone to
-record and plot the GPS coordinates of our measurements.
+\section{Methodology} We collected our measurements by walking from point to
+point, arranging the WiMAX dongle such that it faced the access point (AP)
+antenna on the top of the Computer Sciences building, and running a number of
+tests five times each at each location. We made sure that we did not stand
+between our WiMAX antenna and the AP in order to avoid interfering with (i.e.
+weakening) the signal.  We used the WiMAX card's web-based management interface
+tool to collect data on RSSI and CINR. We then used \textit{iperf} to record
+data on the card's uplink speed, and \textit{speedtest.net} to measure the
+link's downlink speed. We also recorded time, and used the Locus app on an
+Android phone to record and plot the GPS coordinates of our measurements.
 
 Our LOS data was captured by walking up Monroe St., making sure the WiMAX
 antenna was visible from our position, and performing the tests mentioned above.
@@ -44,10 +45,22 @@ For our NLOS tests, we walked some distance from Monroe St. such that our
 position obscured our view of the WiMAX antenna. While we attempted to diversify
 our range of locations, dusk and impending rain forced us to remain close to
 Monroe St. The final two LOS and final three NLOS data points were recorded one
-day after the other measurements.
+day after the other measurements. Measurements are visible in Figure
+\ref{fig:locations}.
+
+\begin{figure}[t]
+\center
+\includegraphics[scale=.55]{}
+\caption{Locations of our LOS and NLOS measurements.}
+\label{fig:locations}
+\end{figure}
+
 
 \section{Model}
-
+Our model depends on handling LOS and NLOS measurements separately, since even
+though two sampling locations can be geographically very close, the introduction
+of obstacles in the signal path can have a substantial effect on signal
+strength.
 
 \section{Results}
 \section{Conclusion}
