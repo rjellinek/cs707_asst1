@@ -11,6 +11,7 @@
 \documentclass[12pt]{article}
 \usepackage[hyphens]{url}
 \usepackage[margin=1.5in]{geometry}
+\usepackage{graphics,epsfig}
 
 \begin{document}
 \maketitle
@@ -48,13 +49,13 @@ Monroe St. The final two LOS and final three NLOS data points were recorded one
 day after the other measurements. Measurements are visible in Figure
 \ref{fig:locations}.
 
+%% TODO include location plots here
 \begin{figure}[t]
 \center
-\includegraphics[scale=.55]{}
+\includegraphics[width=.5\linewidth]{locations}
 \caption{Locations of our LOS and NLOS measurements.}
 \label{fig:locations}
 \end{figure}
-
 
 \section{Model}
 Our model depends on handling LOS and NLOS measurements separately, since even
